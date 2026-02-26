@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>2026 Winter Olympics — Top 10 Countries by Total Medals | Vegas Insider</title>
+  <title>2026 Winter Games — Top 10 Nations by Total Medals | Vegas Insider</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
@@ -45,12 +45,6 @@
       gap:16px;
       align-items:flex-start;
       padding-top:4px;
-    }
-
-    .rings{
-      width:110px;
-      height:auto;
-      display:block;
     }
 
     .hero h1{
@@ -223,10 +217,9 @@
     <div class="top">
       <!-- LEFT: TITLE -->
       <div class="hero">
-        <img class="rings" src="https://i.postimg.cc/tJ7rhRwV/images-removebg-preview.png" alt="Olympic rings">
         <div>
-          <h1>2026 Winter Olympics</h1>
-          <div class="sub">Top 10 countries by total medals</div>
+          <h1>2026 Winter Games</h1>
+          <div class="sub">Top 10 Nations by Total Medals</div>
         </div>
       </div>
 
@@ -238,7 +231,7 @@
     <div class="lower" id="lower"></div>
 
     <div class="footer">
-      <div>Source: Official final medal table • Visual: Vegas Insider</div>
+      <div>Source: Official final results • 116 events completed • Visual: Vegas Insider</div>
       <img class="vilogo" src="https://i.postimg.cc/j5k31rQZ/download.png" alt="Vegas Insider logo" />
     </div>
 
@@ -275,7 +268,7 @@
       const rem = n % COLS;
 
       let out = "";
-      // remainder first (top), then full rows
+      // remainder first (top), then full rows (so "extra" dots sit above)
       if(rem > 0){
         for(let i=0;i<rem;i++) out += `<span class="dot" style="background:${color}"></span>`;
       }
