@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>2026 Winter Olympics — Medals per 100 Athletes | Vegas Insider</title>
+  <title>2026 Winter Games — Medals per 100 Athletes | Vegas Insider</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
@@ -34,38 +34,27 @@
 
     /* ===== HERO ===== */
     .hero{
-      display:flex;
-      gap:16px;
-      align-items:flex-start;
       padding-top:4px;
-      margin-bottom:10px;
-    }
-
-    .rings{
-      width:110px;
-      height:auto;
-      display:block;
+      margin-bottom:14px;
     }
 
     .hero h1{
       margin:0;
-      font-size:44px;
+      font-size:42px;
       font-weight:1000;
       letter-spacing:-0.02em;
       text-transform:uppercase;
       line-height:1.0;
     }
 
-    /* shorter subtitle (no awkward wrap) */
     .hero .sub{
-      margin-top:8px;
+      margin-top:6px;
       font-size:12px;
       font-weight:900;
-      letter-spacing:0.16em;
+      letter-spacing:0.14em;
       text-transform:uppercase;
       color:var(--muted);
       line-height:1.25;
-      max-width:74ch;
     }
 
     /* ===== GRID ===== */
@@ -92,7 +81,6 @@
       border-radius:12px;
       padding:12px;
       background:#fff;
-      box-shadow:none;
     }
 
     .head{
@@ -108,7 +96,6 @@
       border-radius:4px;
       object-fit:cover;
       border:1px solid rgba(15,23,42,0.10);
-      flex:0 0 auto;
     }
 
     .name{
@@ -118,19 +105,16 @@
       font-weight:1000;
       text-transform:uppercase;
       font-size:12px;
-      white-space:nowrap;
-      min-width:0;
     }
 
     .rank{
       font-family:var(--mono);
-      font-weight:1000;
       font-size:12px;
       color:rgba(15,23,42,0.70);
     }
 
     .rule{
-      flex:1 1 auto;
+      flex:1;
       height:1px;
       background:var(--hair);
       margin:0 6px;
@@ -140,8 +124,6 @@
       font-family:var(--mono);
       font-weight:1000;
       font-size:12px;
-      white-space:nowrap;
-      color:rgba(15,23,42,0.90);
     }
 
     .contentWell{
@@ -151,21 +133,19 @@
       justify-content:space-between;
     }
 
-    /* HERO METRIC: slightly larger so efficiency dominates */
     .heroMetric{
       display:flex;
       align-items:baseline;
       gap:8px;
-      margin:0 0 6px; /* tighter to connect to stacks */
-      height:24px;
+      margin:0 0 6px;
     }
+
     .heroMetric .num{
       font-family:var(--mono);
       font-weight:1000;
-      font-size:20px; /* up from 18 */
-      letter-spacing:-0.01em;
-      color:rgba(15,23,42,0.95);
+      font-size:20px;
     }
+
     .heroMetric .tag{
       font-size:11px;
       font-weight:950;
@@ -177,15 +157,14 @@
     /* ===== Medal dots ===== */
     .stacks{
       display:flex;
-      gap:1px;                 /* tighter = more “stacked” */
+      gap:1px;
       align-items:flex-end;
-      justify-content:flex-start;
-      padding-top:0;           /* remove floaty gap */
     }
+
     .stack{ text-align:center; }
 
     .dots{
-      --size: 13px;            /* slightly smaller to reduce dominance of big medal piles */
+      --size: 13px;
       --gap: 2px;
       --cols: 4;
 
@@ -194,20 +173,15 @@
       gap:var(--gap);
       align-content:end;
       height:86px;
-      justify-content:center;
-      width:max-content;
-      margin:0 auto;
     }
 
-    /* tiny totals: make NZ feel intentional, not empty */
-    .dots.small{ --cols: 3; height:66px; }
-    .dots.tiny{  --cols: 2; height:48px; } /* tighter than before */
+    .dots.small{ --cols:3; height:66px; }
+    .dots.tiny{ --cols:2; height:48px; }
 
     .dot{
       width:var(--size);
       height:var(--size);
       border-radius:999px;
-      display:block;
     }
 
     .count{
@@ -215,8 +189,6 @@
       font-family:var(--mono);
       font-weight:1000;
       font-size:12px;
-      line-height:1.0;
-      color:rgba(15,23,42,0.92);
     }
 
     /* ===== Stats ===== */
@@ -232,148 +204,121 @@
 
     .stat{
       display:flex;
-      align-items:baseline;
       justify-content:space-between;
-      gap:10px;
     }
 
     .label{
       color:rgba(15,23,42,0.68);
-      font-weight:900;
-      letter-spacing:0.02em;
     }
+
     .value{
       font-family:var(--mono);
       font-weight:1000;
-      color:rgba(15,23,42,0.92);
-      white-space:nowrap;
     }
 
     /* ===== Footer ===== */
     .footer{
-      margin-top:12px;
+      margin-top:16px;
       padding-top:12px;
       border-top:1px solid rgba(15,23,42,0.10);
       display:flex;
-      align-items:center;
       justify-content:space-between;
-      gap:12px;
       flex-wrap:wrap;
-      color:var(--muted);
       font-size:11px;
       font-weight:900;
-      letter-spacing:0.08em;
       text-transform:uppercase;
+      color:var(--muted);
     }
-    .vilogo{ height:36px; width:auto; display:block; }
+
+    .vilogo{ height:36px; }
   </style>
 </head>
 
 <body>
   <div class="wrap">
     <div class="hero">
-      <img class="rings" src="https://i.postimg.cc/tJ7rhRwV/images-removebg-preview.png" alt="Olympic rings">
-      <div>
-        <h1>Medals per 100 Athletes</h1>
-        <div class="sub">Team efficiency • Ranked by medals per 100 athletes</div>
-      </div>
+      <h1>2026 Winter Games</h1>
+      <div class="sub">Medals per 100 Athletes • Ranked by Team Output</div>
     </div>
 
-    <div class="grid" id="grid" aria-label="Medals per 100 athletes ranking cards"></div>
+    <div class="grid" id="grid"></div>
 
     <div class="footer">
-      <div>Source: Official final medal table • Team sizes: official athlete counts • Visual: Vegas Insider</div>
+      <div>Source: Official final results • Team sizes: official athlete counts • Visual: Vegas Insider</div>
       <img class="vilogo" src="https://i.postimg.cc/j5k31rQZ/download.png" alt="Vegas Insider logo" />
     </div>
   </div>
 
-  <script>
-    const rows = [
-      { rank:1, country:"Netherlands", iso2:"nl", eff:51.28, medals:20, athletes:39,  gold:10, silver: 7, bronze: 3 },
-      { rank:2, country:"Norway",      iso2:"no", eff:51.25, medals:41, athletes:80,  gold:18, silver:12, bronze:11 },
-      { rank:3, country:"Japan",       iso2:"jp", eff:19.83, medals:24, athletes:121, gold: 5, silver: 7, bronze:12 },
-      { rank:4, country:"New Zealand", iso2:"nz", eff:17.65, medals: 3, athletes:17,  gold: 0, silver: 2, bronze: 1 },
-      { rank:5, country:"Sweden",      iso2:"se", eff:16.36, medals:18, athletes:110, gold: 8, silver: 6, bronze: 4 }
-    ];
+<script>
+const rows = [
+  { rank:1, country:"Netherlands", iso2:"nl", eff:51.28, medals:20, athletes:39, gold:10, silver:7, bronze:3 },
+  { rank:2, country:"Norway", iso2:"no", eff:51.25, medals:41, athletes:80, gold:18, silver:12, bronze:11 },
+  { rank:3, country:"Japan", iso2:"jp", eff:19.83, medals:24, athletes:121, gold:5, silver:7, bronze:12 },
+  { rank:4, country:"New Zealand", iso2:"nz", eff:17.65, medals:3, athletes:17, gold:0, silver:2, bronze:1 },
+  { rank:5, country:"Sweden", iso2:"se", eff:16.36, medals:18, athletes:110, gold:8, silver:6, bronze:4 }
+];
 
-    const flagURL = iso2 => `https://flagcdn.com/w40/${iso2}.png`;
+const flagURL = iso2 => `https://flagcdn.com/w40/${iso2}.png`;
 
-    const css = getComputedStyle(document.documentElement);
-    const COLORS = {
-      gold:   css.getPropertyValue("--gold").trim(),
-      silver: css.getPropertyValue("--silver").trim(),
-      bronze: css.getPropertyValue("--bronze").trim()
-    };
+function dotsHTML(n, color, cols){
+  const full = Math.floor(n/cols);
+  const rem = n%cols;
+  let out="";
+  if(rem>0){ for(let i=0;i<rem;i++) out+=`<div class="dot" style="background:${color}"></div>`; }
+  for(let i=0;i<full*cols;i++) out+=`<div class="dot" style="background:${color}"></div>`;
+  return out;
+}
 
-    // remainder on TOP row
-    function dotsHTML(n, color, cols){
-      const fullRows = Math.floor(n / cols);
-      const rem = n % cols;
+function card(d){
+  const tiny = d.medals<=4;
+  const small = d.medals<=6;
+  const cols = tiny?2:(small?3:4);
+  const sizeClass = tiny?"tiny":(small?"small":"");
 
-      let out = "";
-      if(rem > 0){
-        for(let i=0;i<rem;i++) out += `<span class="dot" style="background:${color}"></span>`;
-      }
-      for(let i=0;i<fullRows*cols;i++) out += `<span class="dot" style="background:${color}"></span>`;
-      return out;
-    }
+  return `
+  <div class="card">
+    <div class="head">
+      <img class="flag" src="${flagURL(d.iso2)}" alt="${d.country} flag">
+      <div class="name">
+        <span class="rank">${d.rank}</span>
+        <span>${d.country}</span>
+      </div>
+      <div class="rule"></div>
+      <div class="medalsTotal">${d.medals}</div>
+    </div>
 
-    function stack(n, color, sizeClass, cols){
-      return `
+    <div class="contentWell">
+      <div class="heroMetric">
+        <div class="num">${d.eff.toFixed(2)}</div>
+        <div class="tag">per 100 athletes</div>
+      </div>
+
+      <div class="stacks">
         <div class="stack">
-          <div class="dots ${sizeClass}">${dotsHTML(n, color, cols)}</div>
-          <div class="count">${n}</div>
+          <div class="dots ${sizeClass}">${dotsHTML(d.gold,"#D9A300",cols)}</div>
+          <div class="count">${d.gold}</div>
         </div>
-      `;
-    }
-
-    function card(d){
-      const tiny  = d.medals <= 4;  // NZL (3 medals)
-      const small = d.medals <= 6;
-
-      const cols = tiny ? 2 : (small ? 3 : 4);
-      const sizeClass = tiny ? "tiny" : (small ? "small" : "");
-
-      return `
-        <div class="card">
-          <div class="head">
-            <img class="flag" src="${flagURL(d.iso2)}" alt="${d.country} flag">
-            <div class="name">
-              <span class="rank">${d.rank}</span>
-              <span>${d.country}</span>
-            </div>
-            <div class="rule" aria-hidden="true"></div>
-            <div class="medalsTotal">${d.medals}</div>
-          </div>
-
-          <div class="contentWell">
-            <div class="heroMetric">
-              <div class="num">${d.eff.toFixed(2)}</div>
-              <div class="tag">per 100 athletes</div>
-            </div>
-
-            <div class="stacks" aria-label="Medal composition">
-              ${stack(d.gold, COLORS.gold, sizeClass, cols)}
-              ${stack(d.silver, COLORS.silver, sizeClass, cols)}
-              ${stack(d.bronze, COLORS.bronze, sizeClass, cols)}
-            </div>
-          </div>
-
-          <div class="stats">
-            <div class="stat">
-              <div class="label">Medals</div>
-              <div class="value">${d.medals}</div>
-            </div>
-            <div class="stat">
-              <div class="label">Athletes</div>
-              <div class="value">${d.athletes}</div>
-            </div>
-          </div>
+        <div class="stack">
+          <div class="dots ${sizeClass}">${dotsHTML(d.silver,"#9AA3AF",cols)}</div>
+          <div class="count">${d.silver}</div>
         </div>
-      `;
-    }
+        <div class="stack">
+          <div class="dots ${sizeClass}">${dotsHTML(d.bronze,"#B86A34",cols)}</div>
+          <div class="count">${d.bronze}</div>
+        </div>
+      </div>
+    </div>
 
-    document.getElementById("grid").innerHTML = rows.map(card).join("");
-  </script>
+    <div class="stats">
+      <div class="stat"><span class="label">Medals</span><span class="value">${d.medals}</span></div>
+      <div class="stat"><span class="label">Athletes</span><span class="value">${d.athletes}</span></div>
+    </div>
+  </div>
+  `;
+}
+
+document.getElementById("grid").innerHTML = rows.map(card).join("");
+</script>
+
 </body>
 </html>
