@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>2026 Winter Olympics — Medals Per Capita | Vegas Insider</title>
+  <title>2026 Winter Games — Medals Per Capita | Vegas Insider</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
@@ -39,12 +39,6 @@
       align-items:flex-start;
       padding-top:4px;
       margin-bottom:10px;
-    }
-
-    .rings{
-      width:110px;
-      height:auto;
-      display:block;
     }
 
     .hero h1{
@@ -88,10 +82,9 @@
     /* ===== CARD ===== */
     .card{
       border:1px solid rgba(15,23,42,0.10);
-      border-radius:12px; /* slightly sharper */
+      border-radius:12px;
       padding:12px;
       background:#fff;
-      box-shadow:none; /* clean, editorial */
     }
 
     .head{
@@ -143,7 +136,6 @@
       color:rgba(15,23,42,0.90);
     }
 
-    /* This keeps every card’s middle aligned so stacks don’t “float” */
     .contentWell{
       min-height:170px;
       display:flex;
@@ -151,14 +143,14 @@
       justify-content:space-between;
     }
 
-    /* HERO METRIC */
     .heroMetric{
       display:flex;
       align-items:baseline;
       gap:8px;
       margin:0;
-      height:22px; /* consistent baseline */
+      height:22px;
     }
+
     .heroMetric .num{
       font-family:var(--mono);
       font-weight:1000;
@@ -166,6 +158,7 @@
       letter-spacing:-0.01em;
       color:rgba(15,23,42,0.95);
     }
+
     .heroMetric .tag{
       font-size:11px;
       font-weight:950;
@@ -174,7 +167,6 @@
       color:var(--muted);
     }
 
-    /* ===== Medal dots ===== */
     .stacks{
       display:flex;
       gap:2px;
@@ -182,6 +174,7 @@
       justify-content:flex-start;
       padding-top:2px;
     }
+
     .stack{ text-align:center; }
 
     .dots{
@@ -199,7 +192,6 @@
       margin:0 auto;
     }
 
-    /* small totals: make them look intentional */
     .dots.small{ --cols: 3; height:68px; }
     .dots.tiny{  --cols: 2; height:56px; }
 
@@ -219,7 +211,6 @@
       color:rgba(15,23,42,0.92);
     }
 
-    /* ===== Stats (only population) ===== */
     .stats{
       margin-top:10px;
       padding-top:10px;
@@ -236,6 +227,7 @@
       font-weight:900;
       letter-spacing:0.02em;
     }
+
     .value{
       font-family:var(--mono);
       font-weight:1000;
@@ -243,7 +235,6 @@
       white-space:nowrap;
     }
 
-    /* ===== Footer ===== */
     .footer{
       margin-top:12px;
       padding-top:12px;
@@ -259,26 +250,28 @@
       letter-spacing:0.08em;
       text-transform:uppercase;
     }
+
     .vilogo{ height:36px; width:auto; display:block; }
   </style>
 </head>
 
 <body>
   <div class="wrap">
+
     <div class="hero">
-      <img class="rings" src="https://i.postimg.cc/tJ7rhRwV/images-removebg-preview.png" alt="Olympic rings">
       <div>
-        <h1>Medals Per Capita</h1>
-        <div class="sub">Population-adjusted dominance • Ranked by medals per 1M residents</div>
+        <h1>2026 Winter Games</h1>
+        <div class="sub">Medals Per Capita • Ranked by Medals Per 1M Residents</div>
       </div>
     </div>
 
     <div class="grid" id="grid" aria-label="Medals per capita ranking cards"></div>
 
     <div class="footer">
-      <div>Source: Official final medal table • Population: latest national estimates • Visual: Vegas Insider</div>
+      <div>Source: Official final results • Population: latest national estimates • Visual: Vegas Insider</div>
       <img class="vilogo" src="https://i.postimg.cc/j5k31rQZ/download.png" alt="Vegas Insider logo" />
     </div>
+
   </div>
 
   <script>
@@ -299,7 +292,6 @@
       bronze: css.getPropertyValue("--bronze").trim()
     };
 
-    // remainder on TOP row
     function dotsHTML(n, color, cols){
       const fullRows = Math.floor(n / cols);
       const rem = n % cols;
@@ -322,7 +314,7 @@
     }
 
     function card(d){
-      const tiny  = d.medals <= 4;  // e.g., Slovenia
+      const tiny  = d.medals <= 4;
       const small = d.medals <= 6;
 
       const cols = tiny ? 2 : (small ? 3 : 4);
@@ -346,7 +338,7 @@
               <div class="tag">per 1M</div>
             </div>
 
-            <div class="stacks" aria-label="Medal composition">
+            <div class="stacks">
               ${stack(d.gold, COLORS.gold, sizeClass, cols)}
               ${stack(d.silver, COLORS.silver, sizeClass, cols)}
               ${stack(d.bronze, COLORS.bronze, sizeClass, cols)}
