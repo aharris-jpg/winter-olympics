@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>2026 Winter Olympics — Medals per 100 Athletes | Vegas Insider</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#0f172a;
+      --muted:#6b7280;
+      --hair: rgba(148,163,184,0.65);
+
+      --gold:#D9A300;
+      --silver:#9AA3AF;
+      --bronze:#B86A34;
+
+      --font: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+      --mono: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family:var(--font);
+      background:var(--bg);
+      color:var(--ink);
+      padding:18px 18px 10px;
+    }
+
+    .wrap{ max-width:1200px; margin:0 auto; }
+
+    /* ===== HERO ===== */
+    .hero{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      padding-top:4px;
+      margin-bottom:10px;
+    }
+
+    .rings{
+      width:110px;
+      height:auto;
+      display:block;
+    }
+
+    .hero h1{
+      margin:0;
+      font-size:44px;
+      font-weight:1000;
+      letter-spacing:-0.02em;
+      text-transform:uppercase;
+      line-height:1.0;
+    }
+
+    /* shorter subtitle (no awkward wrap) */
+    .hero .sub{
+      margin-top:8px;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      color:var(--muted);
+      line-height:1.25;
+      max-width:74ch;
+    }
+
+    /* ===== GRID ===== */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap:14px;
+      margin-top:10px;
+    }
+
+    @media (max-width:1100px){
+      .grid{ grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width:760px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width:520px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    /* ===== CARD ===== */
+    .card{
+      border:1px solid rgba(15,23,42,0.10);
+      border-radius:12px;
+      padding:12px;
+      background:#fff;
+      box-shadow:none;
+    }
+
+    .head{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding-bottom:8px;
+    }
+
+    .flag{
+      width:26px;
+      height:18px;
+      border-radius:4px;
+      object-fit:cover;
+      border:1px solid rgba(15,23,42,0.10);
+      flex:0 0 auto;
+    }
+
+    .name{
+      display:flex;
+      align-items:baseline;
+      gap:8px;
+      font-weight:1000;
+      text-transform:uppercase;
+      font-size:12px;
+      white-space:nowrap;
+      min-width:0;
+    }
+
+    .rank{
+      font-family:var(--mono);
+      font-weight:1000;
+      font-size:12px;
+      color:rgba(15,23,42,0.70);
+    }
+
+    .rule{
+      flex:1 1 auto;
+      height:1px;
+      background:var(--hair);
+      margin:0 6px;
+    }
+
+    .medalsTotal{
+      font-family:var(--mono);
+      font-weight:1000;
+      font-size:12px;
+      white-space:nowrap;
+      color:rgba(15,23,42,0.90);
+    }
+
+    .contentWell{
+      min-height:170px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    /* HERO METRIC: slightly larger so efficiency dominates */
+    .heroMetric{
+      display:flex;
+      align-items:baseline;
+      gap:8px;
+      margin:0 0 6px; /* tighter to connect to stacks */
+      height:24px;
+    }
+    .heroMetric .num{
+      font-family:var(--mono);
+      font-weight:1000;
+      font-size:20px; /* up from 18 */
+      letter-spacing:-0.01em;
+      color:rgba(15,23,42,0.95);
+    }
+    .heroMetric .tag{
+      font-size:11px;
+      font-weight:950;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    /* ===== Medal dots ===== */
+    .stacks{
+      display:flex;
+      gap:1px;                 /* tighter = more “stacked” */
+      align-items:flex-end;
+      justify-content:flex-start;
+      padding-top:0;           /* remove floaty gap */
+    }
+    .stack{ text-align:center; }
+
+    .dots{
+      --size: 13px;            /* slightly smaller to reduce dominance of big medal piles */
+      --gap: 2px;
+      --cols: 4;
+
+      display:grid;
+      grid-template-columns: repeat(var(--cols), var(--size));
+      gap:var(--gap);
+      align-content:end;
+      height:86px;
+      justify-content:center;
+      width:max-content;
+      margin:0 auto;
+    }
+
+    /* tiny totals: make NZ feel intentional, not empty */
+    .dots.small{ --cols: 3; height:66px; }
+    .dots.tiny{  --cols: 2; height:48px; } /* tighter than before */
+
+    .dot{
+      width:var(--size);
+      height:var(--size);
+      border-radius:999px;
+      display:block;
+    }
+
+    .count{
+      margin-top:6px;
+      font-family:var(--mono);
+      font-weight:1000;
+      font-size:12px;
+      line-height:1.0;
+      color:rgba(15,23,42,0.92);
+    }
+
+    /* ===== Stats ===== */
+    .stats{
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px solid rgba(15,23,42,0.08);
+      display:grid;
+      gap:8px;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .stat{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .label{
+      color:rgba(15,23,42,0.68);
+      font-weight:900;
+      letter-spacing:0.02em;
+    }
+    .value{
+      font-family:var(--mono);
+      font-weight:1000;
+      color:rgba(15,23,42,0.92);
+      white-space:nowrap;
+    }
+
+    /* ===== Footer ===== */
+    .footer{
+      margin-top:12px;
+      padding-top:12px;
+      border-top:1px solid rgba(15,23,42,0.10);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+    }
+    .vilogo{ height:36px; width:auto; display:block; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <img class="rings" src="https://i.postimg.cc/tJ7rhRwV/images-removebg-preview.png" alt="Olympic rings">
+      <div>
+        <h1>Medals per 100 Athletes</h1>
+        <div class="sub">Team efficiency • Ranked by medals per 100 athletes</div>
+      </div>
+    </div>
+
+    <div class="grid" id="grid" aria-label="Medals per 100 athletes ranking cards"></div>
+
+    <div class="footer">
+      <div>Source: Official final medal table • Team sizes: official athlete counts • Visual: Vegas Insider</div>
+      <img class="vilogo" src="https://i.postimg.cc/j5k31rQZ/download.png" alt="Vegas Insider logo" />
+    </div>
+  </div>
+
+  <script>
+    const rows = [
+      { rank:1, country:"Netherlands", iso2:"nl", eff:51.28, medals:20, athletes:39,  gold:10, silver: 7, bronze: 3 },
+      { rank:2, country:"Norway",      iso2:"no", eff:51.25, medals:41, athletes:80,  gold:18, silver:12, bronze:11 },
+      { rank:3, country:"Japan",       iso2:"jp", eff:19.83, medals:24, athletes:121, gold: 5, silver: 7, bronze:12 },
+      { rank:4, country:"New Zealand", iso2:"nz", eff:17.65, medals: 3, athletes:17,  gold: 0, silver: 2, bronze: 1 },
+      { rank:5, country:"Sweden",      iso2:"se", eff:16.36, medals:18, athletes:110, gold: 8, silver: 6, bronze: 4 }
+    ];
+
+    const flagURL = iso2 => `https://flagcdn.com/w40/${iso2}.png`;
+
+    const css = getComputedStyle(document.documentElement);
+    const COLORS = {
+      gold:   css.getPropertyValue("--gold").trim(),
+      silver: css.getPropertyValue("--silver").trim(),
+      bronze: css.getPropertyValue("--bronze").trim()
+    };
+
+    // remainder on TOP row
+    function dotsHTML(n, color, cols){
+      const fullRows = Math.floor(n / cols);
+      const rem = n % cols;
+
+      let out = "";
+      if(rem > 0){
+        for(let i=0;i<rem;i++) out += `<span class="dot" style="background:${color}"></span>`;
+      }
+      for(let i=0;i<fullRows*cols;i++) out += `<span class="dot" style="background:${color}"></span>`;
+      return out;
+    }
+
+    function stack(n, color, sizeClass, cols){
+      return `
+        <div class="stack">
+          <div class="dots ${sizeClass}">${dotsHTML(n, color, cols)}</div>
+          <div class="count">${n}</div>
+        </div>
+      `;
+    }
+
+    function card(d){
+      const tiny  = d.medals <= 4;  // NZL (3 medals)
+      const small = d.medals <= 6;
+
+      const cols = tiny ? 2 : (small ? 3 : 4);
+      const sizeClass = tiny ? "tiny" : (small ? "small" : "");
+
+      return `
+        <div class="card">
+          <div class="head">
+            <img class="flag" src="${flagURL(d.iso2)}" alt="${d.country} flag">
+            <div class="name">
+              <span class="rank">${d.rank}</span>
+              <span>${d.country}</span>
+            </div>
+            <div class="rule" aria-hidden="true"></div>
+            <div class="medalsTotal">${d.medals}</div>
+          </div>
+
+          <div class="contentWell">
+            <div class="heroMetric">
+              <div class="num">${d.eff.toFixed(2)}</div>
+              <div class="tag">per 100 athletes</div>
+            </div>
+
+            <div class="stacks" aria-label="Medal composition">
+              ${stack(d.gold, COLORS.gold, sizeClass, cols)}
+              ${stack(d.silver, COLORS.silver, sizeClass, cols)}
+              ${stack(d.bronze, COLORS.bronze, sizeClass, cols)}
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="label">Medals</div>
+              <div class="value">${d.medals}</div>
+            </div>
+            <div class="stat">
+              <div class="label">Athletes</div>
+              <div class="value">${d.athletes}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    document.getElementById("grid").innerHTML = rows.map(card).join("");
+  </script>
+</body>
+</html>
